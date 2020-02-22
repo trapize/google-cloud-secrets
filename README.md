@@ -1,18 +1,22 @@
 ![](https://github.com/trapize/google-cloud-secrets/workflows/Unit%20Tests/badge.svg)
-# Core
+# Google Cloud Secrets
 Provides an extensible framework design around ease of use to remove much of the boiler plate code for web APIs.
 
 ## Installation
 `npm install --save @trapize/google-cloud-secrets`
 
 ## Configure
-In your `IAppConfig` for your application, include a `secrets: ISecretAppSettings` property.
+In your `IAppConfig` for your application, include a `secrets: ISecretAppSettings` property, and include the provided `SecretModule` in your modules.
 
 ```javascript
 import { IAppConfig } from '@trapize/core';
-import { ISecretConfig } from '@trapize/google-cloud-secrets';
+import { ISecretConfig, SecretsModule } from '@trapize/google-cloud-secrets';
 
 export const MyAppConfig: IAppConfig & ISecretConfig = {
+    modules: [
+        // ...
+        SecretsModule
+    ],
     // ...
     secrets: {
         crypto: {
