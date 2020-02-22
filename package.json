@@ -1,0 +1,49 @@
+{
+  "name": "@trapize/google-cloud-secrets",
+  "version": "0.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "preflight": "npm run build && npm run lint && npm test",
+    "preversion": "npm test && npm run build && npm run lint",
+    "version": "git add -A src",
+    "lint": " tslint -p tsconfig.json",
+    "prepare": "",
+    "prepublishOnly": "npm test && npm run build && npm run lint",
+    "test": "jest",
+    "postversion": "git push && git push --tags",
+    "build": "gulp clean && gulp"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/trapize/google-cloud-secrets.git"
+  },
+  "author": "ztrank",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/trapize/google-cloud-secrets/issues"
+  },
+  "homepage": "https://github.com/trapize/google-cloud-secrets#readme",
+  "dependencies": {
+    "@google-cloud/kms": "^1.6.3",
+    "@google-cloud/storage": "^4.3.1",
+    "@trapize/core": "^1.0.6",
+    "@trapize/secrets-management": "^1.0.3",
+    "reflect-metadata": "^0.1.13",
+    "rxjs": "^6.5.4"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.8.4",
+    "@babel/preset-env": "^7.8.4",
+    "@babel/preset-typescript": "^7.8.3",
+    "@types/google-cloud__kms": "^1.5.0",
+    "@types/jest": "^25.1.3",
+    "gulp": "^4.0.2",
+    "gulp-clean": "^0.4.0",
+    "gulp-typescript": "^6.0.0-alpha.1",
+    "jest": "^25.1.0",
+    "ts-jest": "^25.2.1",
+    "tslint": "^6.0.0",
+    "typescript": "^3.8.2"
+  }
+}

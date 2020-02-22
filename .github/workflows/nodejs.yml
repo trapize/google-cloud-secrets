@@ -1,0 +1,36 @@
+name: Unit Tests
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [12.x]
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+        registry-url: 'https://npm.pkg.github.com'
+        scope: '@trapize'
+    - run: npm ci --ignore-scripts
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - run: npm run build --if-present
+    - run: npm run lint --if-present
+    - run: npm test
+      env:
+        CI: true
+    - name: Upload npm error
+      if: failure()
+      uses: actions/upload-artifact@v1
+      with:
+        name: 'npm_log'
+        path: '/home/runner/.npm/_logs'
+    
