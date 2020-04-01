@@ -7,7 +7,7 @@ import { Secrets } from '@trapize/secrets-management';
 export const SecretsModule: IModule = {
     name: 'GoogleCloudSecrets',
     assemblies: [
-        {type: GoogleCloudFactory, injectAs: GoogleCloudSecretSymbols.IGoogleCloudFactory, scope: 'SINGLETON'},
+        {type: GoogleCloudFactory, injectAs: GoogleCloudSecretSymbols.IGoogleCloudFactory, binding: 'CONSTANT'},
         {type: SecretService, injectAs: Secrets.ISecretService, scope: 'SINGLETON'}
     ]
 }
